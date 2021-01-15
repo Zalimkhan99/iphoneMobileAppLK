@@ -60,7 +60,7 @@ export class TaskMoreInfo  extends React.Component<TodoProps, TodoState,{ naviga
                     console.log(
                         error
                     )
-                   console.log(this.createURLHTTP())
+                  // console.log(this.createURLHTTP())
                    // this.createURLHTTP()
 
                     this.sendHTTPRequest()

@@ -41,7 +41,7 @@ export  class PrivateOffice extends React.Component<TodoProps, TodoState,{ navig
                 })
             })
             .catch((error) => {
-                console.log(error);
+                //console.log(error);
                 this.sendHTTPRequest()
             })
     }

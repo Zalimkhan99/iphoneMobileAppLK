@@ -57,11 +57,11 @@ export class TaskPage  extends React.Component<TodoProps, TodoState,{ navigation
                 this.setState({
                     DataJSON: responseJSON
                 })
-                console.log("ok")
+               // console.log("ok")
                 //alert(JSON.stringify(this.state.DataJSON))
             })
             .catch((error) => {
-                console.log("task error");
+                //console.log("task error");
                 this.sendHTTPRequest();
             })
     }
@@ -79,7 +79,7 @@ export class TaskPage  extends React.Component<TodoProps, TodoState,{ navigation
                 //alert(JSON.stringify(this.state.DataJSON))
             })
             .catch((error) => {
-                console.log("task err2");
+               // console.log("task err2");
                 this.clearNotification;
             })
     }

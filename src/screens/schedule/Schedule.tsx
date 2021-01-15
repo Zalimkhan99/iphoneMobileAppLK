@@ -45,7 +45,7 @@ export class Schedule extends React.Component<TodoProps, TodoState,{ navigation:
                 //alert(JSON.stringify(this.state.DataJSON))
             })
             .catch((error) => {
-                console.log(error);
+                //console.log(error);
                 this.sendHTTPRequest()
             })
     }
