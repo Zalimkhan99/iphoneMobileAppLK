@@ -1,0 +1,12 @@
+{
+  "name": "The_Group",
+  "displayName": "The_Group",
+  "expo": {
+    "name": "The_Group",
+    "slug": "The_Group",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
