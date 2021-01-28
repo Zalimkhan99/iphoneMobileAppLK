@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import { Text, View} from 'react-native';
-// @ts-ignore
 import {NavigationScreenProp} from "react-navigation";
-// @ts-ignore
 import AsyncStorage from "@react-native-community/async-storage";
 import API from "../../utilities/Authorization/API";
 import { ScrollView } from 'react-native-gesture-handler';
@@ -23,7 +21,6 @@ export class Schedule extends React.Component<TodoProps, TodoState,{ navigation:
         this.state={LoginUser:'', DataJSON:[]}
     }
     getUserName(){
-        // @ts-ignore
         AsyncStorage.getItem('LoginUser').then((LoginUser)=>{
             this.setState({LoginUser:LoginUser})
         })
@@ -45,7 +42,7 @@ export class Schedule extends React.Component<TodoProps, TodoState,{ navigation:
                 //alert(JSON.stringify(this.state.DataJSON))
             })
             .catch((error) => {
-                //console.log(error);
+                console.log(error);
                 this.sendHTTPRequest()
             })
     }
@@ -81,7 +78,7 @@ export class Schedule extends React.Component<TodoProps, TodoState,{ navigation:
                     <Text style={scheduleStyle.WorkedTime}>{element.ArrivalTime} - {element.CareTime}</Text>
                 </View>
                 <Text style={
-                    [{color: "#666666"},
+                    [scheduleStyle.EndWorkTime,
                         element.WorkedTime == ""
                             ? {display: 'none'}
                             : {}
@@ -111,11 +108,10 @@ export class Schedule extends React.Component<TodoProps, TodoState,{ navigation:
         )
         return(
             <View style={styles.container}>
-            <ScrollView style={scheduleStyle.containerChild}>
-                {listItem}
-            </ScrollView>
+                <ScrollView style={scheduleStyle.containerChild}>
+                    {listItem}
+                </ScrollView>
             </View>
         )
     }
 }
-// @ts-ignore

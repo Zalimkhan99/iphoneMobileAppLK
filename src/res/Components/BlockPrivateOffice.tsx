@@ -11,7 +11,10 @@ import React from "react";
         <View style={styles.container}>
 
             <Text style={privateOffice.heading}>{item.Login} </Text>
-            <Text style={privateOffice.userdataSubdivisionAndPosition}>{item.Subdivision}{`\n`}{item.Position}</Text>
+            <View style={privateOffice.userdataSubdivisionAndPosition}>
+                <Text style={privateOffice.userdataSubdivisionAndPositionText} >{item.Subdivision}{`\n`}{item.Position}</Text>
+            </View>
+
             <Text style={privateOffice.numberOfFines}>Строгих Выговоров:</Text>
             <Text style={privateOffice.punishmentText}>{item.SevereReprimands}</Text>
             <Text style={privateOffice.numberOfFines}>Выговоров:</Text>

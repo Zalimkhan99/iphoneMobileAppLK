@@ -5,10 +5,13 @@ import API from "../../utilities/Authorization/API";
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 
 import taskInfo from "../../res/commonStyles/taskMoreInfoStyle";
-import {View, Text, Button, unstable_enableLogBox} from 'react-native';
+import {View, Text, Button, } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
 import sendComment from "../../utilities/HTTPRequest/sendComment";
+import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
+
+
 interface TodoProps {
     navigation: NavigationScreenProp<any>;
 }
@@ -206,7 +209,13 @@ export class TaskMoreInfo  extends React.Component<TodoProps, TodoState,{ naviga
                                 let url:string = API("sendmsg/"+this.state.numberTaskGl+'/'+this.state.LoginUser+'/'+this.state.comment);
                                 this.state.comment!='' ?sendComment(url):alert("Нельзя отправить пустой комментарий") ;
                                 setTimeout(()=>{this.sendHTTPRequest()},100);
-                                setTimeout(()=>{this.setState({comment:''})},1000)
+                                fetch(url)
+                                    .then((response)=>{
+                                        if(response.ok){
+                                            setTimeout(()=>{this.setState({comment:''})},1000)
+                                        }
+                                    }).catch((error)=>console.log(error) )
+
                                 this.setState({stateButton:true})
                                 setTimeout(()=>this.setState({stateButton:false}),4000)
                                  }
@@ -243,7 +252,13 @@ export class TaskMoreInfo  extends React.Component<TodoProps, TodoState,{ naviga
 
         return (
             <ScrollView style={taskInfo.container} >
-                {listItem}
+                <KeyboardAwareScrollView
+                    scrollEnabled={false}
+                    resetScrollToCoords={{ x: 0, y: 0 }}
+                >
+                    {listItem}
+                </KeyboardAwareScrollView>
+
             </ScrollView>
         )
     }

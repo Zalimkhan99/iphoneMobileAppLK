@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Image, Text, TouchableOpacity, View} from "react-native";
+import {Button, Image, KeyboardAvoidingView, Text, TouchableOpacity, View} from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import {TextInput} from "react-native-gesture-handler";
 import MD5ToPassword from "../../utilities/Authorization/MD5ToPassword";
@@ -8,6 +8,7 @@ import API from "../../utilities/Authorization/API";
 import styles from "../../res/commonStyles/style";
 import fonts from "../../res/font/fontsStyle";
 import { NavigationScreenProp } from 'react-navigation';
+import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 
 interface TodoProps {
     navigation: NavigationScreenProp<string>;
@@ -54,7 +55,7 @@ export class LoginIn extends React.Component<TodoProps, TodoState, { navigation:
         this.getToken();
         if(this.state.LoginIn=="true"){
             let {navigation} = this.props;
-            setTimeout(()=>{navigation.navigate("Выйти")},1000)
+            setTimeout(()=>{navigation.navigate("Личный Кабинет")},1000)
 
         }
     }
@@ -63,7 +64,7 @@ export class LoginIn extends React.Component<TodoProps, TodoState, { navigation:
         AsyncStorage.getItem('checkAuth').then((isLogin)=>{
             this.setState({LoginIn:isLogin})
             let {navigation} = this.props;
-            if(this.state.LoginIn=="true") navigation.navigate("Выйти")})
+            if(this.state.LoginIn=="true") navigation.navigate("Личный Кабинет")})
     }
     //отрпавить http запрос для авторизации в системе
     RequestHTTP(){
@@ -79,7 +80,12 @@ export class LoginIn extends React.Component<TodoProps, TodoState, { navigation:
 
     render() {
         return (
-            <View style={styles.container}>
+            <KeyboardAwareScrollView
+                scrollEnabled={false}
+                contentContainerStyle={styles.container}
+                resetScrollToCoords={{ x: 0, y: 0 }}
+               >
+
                 <View>
                     <Image style={styles.imageLogo} source={require('../../res/images/Logo.png')}/>
                 </View>
@@ -110,7 +116,7 @@ export class LoginIn extends React.Component<TodoProps, TodoState, { navigation:
                     <Text style={styles.textInButton}>ВОЙТИ</Text>
                 </TouchableOpacity>
 
-            </View>
+            </KeyboardAwareScrollView>
         );
     }
 }

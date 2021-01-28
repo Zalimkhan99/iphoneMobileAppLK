@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 import React from "react";
 let status:string = "false"
 
-export default  function checkRequest(request:string ) {
+export default  function checkConncetSendComment(request:string ) {
     fetch(request)
         .then((response)=>{
             if(!response.ok){
@@ -16,8 +16,8 @@ export default  function checkRequest(request:string ) {
 
                 AsyncStorage.setItem('checkAuth',"true");
             }
-        }).catch((error)=> {console.log(error); checkRequest(request);})
-return status
+        }).catch((error)=> console.log(error))
+    return status
 
 }
 

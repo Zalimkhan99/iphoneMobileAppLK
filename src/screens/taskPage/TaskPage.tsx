@@ -34,9 +34,9 @@ export class TaskPage  extends React.Component<TodoProps, TodoState,{ navigation
     }
 //получаем имя пользователя
     getUserName(){
-            AsyncStorage.getItem('LoginUser').then((LoginUser)=>{
+        AsyncStorage.getItem('LoginUser').then((LoginUser)=>{
             this.setState({LoginUser:LoginUser})
-    })}
+        })}
 //создание строки запроса для очистки увдемоления
     createClearNotificationURLHTTP(){
         let url:string = API("moreinfotask/"+this.state.numberTaskGl+"/"+this.state.LoginUser)
@@ -57,11 +57,11 @@ export class TaskPage  extends React.Component<TodoProps, TodoState,{ navigation
                 this.setState({
                     DataJSON: responseJSON
                 })
-               // console.log("ok")
+                console.log("ok")
                 //alert(JSON.stringify(this.state.DataJSON))
             })
             .catch((error) => {
-                //console.log("task error");
+                console.log("task error");
                 this.sendHTTPRequest();
             })
     }
@@ -79,14 +79,14 @@ export class TaskPage  extends React.Component<TodoProps, TodoState,{ navigation
                 //alert(JSON.stringify(this.state.DataJSON))
             })
             .catch((error) => {
-               // console.log("task err2");
+                console.log("task err2");
                 this.clearNotification;
             })
     }
 //запускамем функции
     componentDidMount(): void {
         this.getUserName();
-       this.SaveNumberTask()
+        this.SaveNumberTask()
         setInterval(()=>{this.sendHTTPRequest()},3000)
 
 
@@ -101,8 +101,8 @@ export class TaskPage  extends React.Component<TodoProps, TodoState,{ navigation
                 <View key={index}  style={taskStyle.globalContainerTask}>
                     <TouchableOpacity
                         onPress={ async () => {
-                           await this.SaveNumberTask()
-                           setTimeout(async ()=>{await this.clearNotification()},3000)
+                            await this.SaveNumberTask()
+                            setTimeout(async ()=>{await this.clearNotification()},3000)
                             let numberTask = element.Number;
                             console.log(numberTask)
                             this.setState({numberTaskGl:element.Number})
@@ -136,9 +136,9 @@ export class TaskPage  extends React.Component<TodoProps, TodoState,{ navigation
                         <Text style={[taskStyle.taskName ]}>{element.NameTasks}</Text>
 
                         <Text style={taskStyle.customerAndExecutor}>{"Заказчик"}</Text>
-                        <Text style={{fontSize:12, marginBottom:5}}>{element.Customer}</Text>
+                        <Text style={[taskStyle.authorsStyle ,{ marginBottom:5}]}>{element.Customer}</Text>
                         <Text style={taskStyle.customerAndExecutor}>{"Исполнитель"} </Text>
-                        <Text style={{fontSize:12}}>{element.Executor}{`\n`}</Text>
+                        <Text style={[taskStyle.authorsStyle]}>{element.Executor}{`\n`}</Text>
 
                         <View style={taskStyle.blockTaskPeriodOfExecution}>
                             <Text style={[taskStyle.statusAndNumberTaskAndPeriodOfExecution,
@@ -170,7 +170,7 @@ export class TaskPage  extends React.Component<TodoProps, TodoState,{ navigation
 
                 </View >
 
-                    <Text style={taskStyle.notification}> {element.notification } </Text>
+                <Text style={taskStyle.notification}> {element.notification } </Text>
 
 
             </View>
@@ -182,7 +182,7 @@ export class TaskPage  extends React.Component<TodoProps, TodoState,{ navigation
                     {listItem}
                 </ScrollView>
             </View>
-                )
+        )
     }
 }
 export default TaskPage

@@ -13,7 +13,7 @@ const  AllScreen=  ()=>{
         <NavigationContainer>
             <Stack.Navigator initialRouteName={"Вход"}>
                 <Stack.Screen name="Вход" component={LoginIn}/>
-                <Stack.Screen name={"Выйти"} component={BottomNavigation}/>
+                <Stack.Screen name={"Личный Кабинет"} component={BottomNavigation}/>
                 <Stack.Screen name="К задачам" component={TaskMoreInfo} initialParams={{}}/>
                 <Stack.Screen name="Отчет KPI" component={ReportKPI} initialParams={{}}/>
             </Stack.Navigator>
