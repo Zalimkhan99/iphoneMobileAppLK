@@ -192,6 +192,7 @@ export class TaskMoreInfo  extends React.Component<TodoProps, TodoState,{ naviga
                             {'\n'}
                         </Text> ) }
                     </Text>
+
                     <TextInput
                         style={taskInfo.sendMessageStyle}
                         value={this.state.comment}
@@ -206,7 +207,8 @@ export class TaskMoreInfo  extends React.Component<TodoProps, TodoState,{ naviga
                              style={taskInfo.buttonSendComment}
                             disabled={this.state.stateButton}
                             onPress={()=>{
-                                let url:string = API("sendmsg/"+this.state.numberTaskGl+'/'+this.state.LoginUser+'/'+this.state.comment);
+                                // @ts-ignore
+                                let url:string = API("sendmsg/"+this.state.numberTaskGl+'/'+this.state.LoginUser+'/'+encodeURIComponent( this.state.comment));
                                 this.state.comment!='' ?sendComment(url):alert("Нельзя отправить пустой комментарий") ;
                                 setTimeout(()=>{this.sendHTTPRequest()},100);
                                 fetch(url)
@@ -251,15 +253,14 @@ export class TaskMoreInfo  extends React.Component<TodoProps, TodoState,{ naviga
 ))
 
         return (
+            <KeyboardAwareScrollView>
             <ScrollView style={taskInfo.container} >
-                <KeyboardAwareScrollView
-                    scrollEnabled={false}
-                    resetScrollToCoords={{ x: 0, y: 0 }}
-                >
+
                     {listItem}
-                </KeyboardAwareScrollView>
+
 
             </ScrollView>
+            </KeyboardAwareScrollView>
         )
     }
 }
