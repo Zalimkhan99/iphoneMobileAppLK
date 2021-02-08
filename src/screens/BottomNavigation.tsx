@@ -11,9 +11,10 @@ const Tab = createBottomTabNavigator();
 
 const BottomNavigation = ()=>{
     return(
-            <Tab.Navigator initialRouteName={"Home"}>
+            <Tab.Navigator  initialRouteName={"Home"} tabBarOptions={{style:{height:60,padding:10}}} >
                 <Tab.Screen name="Кабинет" component={PrivateOffice} options={{
                     tabBarLabel:"",
+
                     tabBarIcon:({focused,color,size})=>(
                         <Image source={
                             focused
