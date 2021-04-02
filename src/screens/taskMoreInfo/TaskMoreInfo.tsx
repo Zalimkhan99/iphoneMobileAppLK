@@ -235,7 +235,9 @@ export class TaskMoreInfo  extends React.Component<TodoProps, TodoState,{ naviga
                     <Text>{element.Curator} </Text>
                     <Text style={taskInfo.commentsUsers}>{"Куратор 2"} </Text>
                     <Text>{element.Curator1} </Text>
-                    <Text style={taskInfo.commentsUsers}>{"Куратор 3"}</Text>
+                    <Text style={taskInfo.commentsUsers}>{"Куратор 3"} </Text>
+                    <Text>{element.Curator1} </Text>
+                    <Text style={taskInfo.commentsUsers}>{"Куратор 4"}</Text>
                     <Text>{element.Curator2} </Text>
                 </View>
 

@@ -14,17 +14,16 @@ const taskInfo = StyleSheet.create({
 
     blocksInTasks:{
         flexDirection:'row',
-        width:320,
+        justifyContent:"space-between",
     },
 
     statusAndNumberTask:{
-        width:230,
+
     },
     taskName:{
         borderColor:'silver',
         borderBottomWidth:1,
         borderTopWidth:1,
-        width:320,
         marginBottom:5,
     },
     customerAndExecutor:{
@@ -32,28 +31,20 @@ const taskInfo = StyleSheet.create({
     },
     blockTaskPeriodOfExecution:{
         flexDirection:'row',
-
+        justifyContent:"space-between",
     },
     PeriodOfExecution:{
         marginTop:6,
-        width:240,
-
-
     },
     infoTaskAppointment:{
         marginTop:6,
-        width:192,
-
-
     },
     infoTaskPrioritet:{
         marginTop:6,
-        width:259,
     },
 
     infoTaskHourse:{
         marginTop:6,
-        width:290,
     },
 
     commentsBlock:{
@@ -93,10 +84,8 @@ const taskInfo = StyleSheet.create({
     },
     buttonSendComment:{
         backgroundColor:'green',
-
         width:290,
         height:30,
-
     },
     textInButtonSend:{
         top:6,

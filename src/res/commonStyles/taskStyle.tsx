@@ -3,14 +3,16 @@ import { Dimensions } from "react-native";
 let padding:number = 100;
 let fontSize:number =14;
 let fontSizeAuthor:number = 12;
+let right:number = 3;
 let screenWidth = Dimensions.get('window').width ;
 if(screenWidth<376){
-    padding = 50; alert(screenWidth)
+    padding = 50;
 }
-else if(screenWidth > 376 && screenWidth < 721){padding=30;fontSize=16;fontSizeAuthor= 14;}
+else if(screenWidth > 376 && screenWidth < 721){padding=50;fontSize=16;fontSizeAuthor= 14; right=10}
 
 let width = (Dimensions.get('window').width - padding) ; //full width
 let height = Dimensions.get('window').height; //full height
+
 const taskStyle = StyleSheet.create({
 
 
@@ -21,7 +23,7 @@ const taskStyle = StyleSheet.create({
     notificationAndBlockTask:{
         flex:2,
         flexDirection:'row',
-        //width: width,
+       // width: width,
     },
     globalContainerTask: {
         borderWidth:1,
@@ -68,6 +70,7 @@ const taskStyle = StyleSheet.create({
         color:'red',
         fontWeight:'bold',
         fontSize:76,
+        right:right
     },
 
 })

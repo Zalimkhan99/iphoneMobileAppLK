@@ -27,19 +27,19 @@ export class ReportKPI extends React.Component<TodoProps, TodoState,{ navigation
     }
     createURLHTTP(){
         let url:string = API("kpiuserlk/"+this.state.LoginUser);
-          // alert(url)
+        // alert(url)
         return url
     }
-   async sendHTTPRequest(){
+    async sendHTTPRequest(){
         await fetch(this.createURLHTTP(), {
             method: 'GET'
         })
             .then((response) => response.json())
             .then((responseJSON) => {
-                 this.setState({
+                this.setState({
                     DataJSON: responseJSON
                 })
-               //alert(JSON.stringify(this.state.DataJSON))
+                //alert(JSON.stringify(this.state.DataJSON))
             })
             .catch((error) => {
                 console.log(error);
@@ -53,12 +53,12 @@ export class ReportKPI extends React.Component<TodoProps, TodoState,{ navigation
             this.sendHTTPRequest()
         },1000)
     }
-    render(): React.ReactNode {
+    render (): React.ReactNode {
         let elemList:any = this.state.DataJSON
-
-        let listItem = elemList.map((element:any, index:any) =>(
-
-                <View key={index} >
+        console.log(elemList)
+        let listItem = elemList.map((element:any, index:any) =>{
+            if(element.ReportKPI =="Премия с продаж + партнерские"){
+                return(<View  key = {index} >
 
                     <View style={[reportKPIStyle.container]}>
                         <Text style={[reportKPIStyle.borderTable, reportKPIStyle.textDefault]}>Показатель</Text>
@@ -68,10 +68,10 @@ export class ReportKPI extends React.Component<TodoProps, TodoState,{ navigation
                     </View>
 
                     <View style={reportKPIStyle.container}>
-                            <Text style={[reportKPIStyle.blueText,reportKPIStyle.borderTable,reportKPIStyle.textDefault]}>Продажи</Text>
-                            <Text style={[reportKPIStyle.blueText,reportKPIStyle.borderTable,reportKPIStyle.textDefault]}>{element.SalesProgram}</Text>
-                            <Text style={[reportKPIStyle.blueText,reportKPIStyle.borderTable,reportKPIStyle.textDefault]}>{element.SalesCurrent}</Text>
-                            <Text style={[reportKPIStyle.purpleText,reportKPIStyle.borderTable,reportKPIStyle.textDefault]}>{element.PercentSales}</Text>
+                        <Text style={[reportKPIStyle.blueText,reportKPIStyle.borderTable,reportKPIStyle.textDefault]}>Продажи</Text>
+                        <Text style={[reportKPIStyle.blueText,reportKPIStyle.borderTable,reportKPIStyle.textDefault]}>{element.SalesProgram}</Text>
+                        <Text style={[reportKPIStyle.blueText,reportKPIStyle.borderTable,reportKPIStyle.textDefault]}>{element.SalesCurrent}</Text>
+                        <Text style={[reportKPIStyle.purpleText,reportKPIStyle.borderTable,reportKPIStyle.textDefault]}>{element.PercentSales}</Text>
                     </View>
 
 
@@ -106,8 +106,8 @@ export class ReportKPI extends React.Component<TodoProps, TodoState,{ navigation
                     <View style={reportKPIStyle.container}>
                         <Text style={[reportKPIStyle.blueText,reportKPIStyle.borderTable,reportKPIStyle.textDefault]}>Премия с продаж</Text>
 
-                            <Text style={[reportKPIStyle.blueText,reportKPIStyle.borderTable,reportKPIStyle.textDefault]}>{element.PlanAward}</Text>
-                            <Text style={[reportKPIStyle.blueText,reportKPIStyle.borderTable,reportKPIStyle.textDefault]}>{element.FactAwards}</Text>
+                        <Text style={[reportKPIStyle.blueText,reportKPIStyle.borderTable,reportKPIStyle.textDefault]}>{element.PlanAward}</Text>
+                        <Text style={[reportKPIStyle.blueText,reportKPIStyle.borderTable,reportKPIStyle.textDefault]}>{element.FactAwards}</Text>
                         <Text style={[reportKPIStyle.purpleText,reportKPIStyle.borderTable,reportKPIStyle.textDefault]}>{element.PercentageOfExecutionAwards}</Text>
                     </View>
 
@@ -168,15 +168,17 @@ export class ReportKPI extends React.Component<TodoProps, TodoState,{ navigation
                         <Text style={[reportKPIStyle.greenText,reportKPIStyle.borderTable,reportKPIStyle.textDefault]}></Text>
                     </View>
 
-            </View>
+                </View>)
+            }
 
-        ));
+
+        });
         return (
-                <ScrollView>
+            <ScrollView>
                 <View style={reportKPIStyle.GlContainer}>
-                {listItem}
+                    {listItem}
                 </View>
-                </ScrollView>
+            </ScrollView>
 
         );
     }
